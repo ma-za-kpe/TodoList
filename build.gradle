@@ -1,15 +1,15 @@
-plugins {
-    id 'java'
-}
+
+apply plugin: 'java'
+apply plugin: 'application'
 
 group 'moringa'
 version '1.0-SNAPSHOT'
+
 
 archivesBaseName = "todo"
 version = '1.0'
 mainClassName = "App"
 applicationName = "todo"
-sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
