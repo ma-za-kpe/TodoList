@@ -20,10 +20,10 @@
         <tbody>
           #foreach($todos in $mytodos)
            <tr>
-            <td>$todos.todoItem</td>
-            <td><a href="/add-form"><button type="submit" class="btn btn-default btn-md">Edit </button></a></td>
-            <td><a href="/add-form"><button type="submit" class="btn btn-default btn-md">Delete </button></a></td>
-            <td><a href="/add-form"><button type="submit" class="btn btn-default btn-md">More...</button></a></td>
+            <td class="header">$todos.todoItem</td>
+            <td><a href="/add-form"><button type="submit" class="btn add btn-lg "><p class="add-btn">Edit</p></button></a></td>
+            <td><a href="/add-form"><button type="submit" class="btn add btn-lg"><p class="add-btn">Delete</p></button></a></td>
+            <td><a href="/add-form"><button type="submit" class="btn add btn-lg"><p class="add-btn">More...</p></button></a></td>
           </tr>
           #end
         </tbody>

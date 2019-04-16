@@ -45,7 +45,7 @@ public class App {
             //post: process new post form
             post("/addform", (request, response) -> { //URL to make new post on POST route
             Map<String, Object> model = new HashMap<>();
-            String todoItem = request.queryParams("todoItem");
+            String todoItem = request.queryParams("todoItem").toUpperCase();
             //session
             request.session().attribute("todoItem");
             model.put("todoItem", todoItem);
