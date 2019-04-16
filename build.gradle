@@ -7,7 +7,7 @@ version '1.0-SNAPSHOT'
 
 archivesBaseName = "todo"
 version = '1.0'
-//mainClassName = "App"
+mainClassName = "App"
 applicationName = "todo"
 sourceCompatibility = 1.8
 
