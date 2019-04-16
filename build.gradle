@@ -5,6 +5,10 @@ plugins {
 group 'moringa'
 version '1.0-SNAPSHOT'
 
+archivesBaseName = "todo"
+version = '1.0'
+mainClassName = "App"
+applicationName = "todo"
 sourceCompatibility = 1.8
 
 repositories {
@@ -16,3 +20,6 @@ dependencies {
     compile group: 'com.sparkjava', name: 'spark-core', version: '2.3'
     compile group: 'org.apache.velocity', name: 'velocity', version: '1.7'
 }
+
+defaultTasks = ['clean']
+task stage(dependsOn: ['clean', 'installDist'])
