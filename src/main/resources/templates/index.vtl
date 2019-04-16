@@ -1,0 +1,33 @@
+
+<div class="row">
+<div class="col-sm">
+<h3> ADD A TODO ITEM: <a href="/addTodoForm"><button type="submit" class="btn add btn-lg"> <p class="add-btn">ADD</p> </button></a> </h3>
+</div>
+</div>
+
+
+<div class="row">
+      <div class="col-sm">
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"><h2 class="header">TodoItem Name</h2></th>
+            <th scope="col"><h2 class="header">Update</h2></th>
+            <th scope="col"><h2 class="header">Delete</h2></th>
+            <th scope="col"><h2 class="header">More...</h2></th>
+          </tr>
+        </thead>
+        <tbody>
+          #foreach($todos in $mytodos)
+           <tr>
+            <td>$todos.todoItem</td>
+            <td><a href="/add-form"><button type="submit" class="btn btn-default btn-md">Edit </button></a></td>
+            <td><a href="/add-form"><button type="submit" class="btn btn-default btn-md">Delete </button></a></td>
+            <td><a href="/add-form"><button type="submit" class="btn btn-default btn-md">More...</button></a></td>
+          </tr>
+          #end
+        </tbody>
+      </table>
+      </div>
+    </div>
+</div>

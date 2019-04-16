@@ -1,0 +1,40 @@
+.navbar{
+background-color: #5B1000;
+}
+
+.header{
+font-size:30px;
+}
+
+th{
+ font-size: 70px;
+ color: red;
+ }
+
+ table {
+   border: 1px solid #5B1000;
+ }
+
+ .main{
+ font-size: 50px;
+ font-weight: 500px;
+ color: white;
+ }
+
+ .add{
+ background-color: #5B1000;
+ font-size:50px;
+  color: white;
+ }
+
+ h3{
+  font-size:30px;
+  color: #5B1000;
+ }
+
+ .add-btn{
+ font-size:20px;
+ }
+ #todoItem{
+ font-size:40px;
+ }
