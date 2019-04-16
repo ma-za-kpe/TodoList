@@ -4,12 +4,12 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class TodoTest {
-
-    @Test
-    public void NewTodoObjectGetsCorrectlyCreated_true() throws Exception {
-        Todo todo = new Todo("Marvel", "saving Gotham");
-        assertEquals(true, squad instanceof Squad);
-    }
+//
+//    @Test
+//    public void NewTodoObjectGetsCorrectlyCreated_true() throws Exception {
+//        Todo todo = new Todo("Marvel", "saving Gotham");
+//        assertEquals(true, squad instanceof Squad);
+//    }
 
 //    @Test
 //    public void SquadInstantiatesWithName_true() throws Exception {
