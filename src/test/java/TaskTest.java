@@ -72,4 +72,23 @@ public class TaskTest {
         assertEquals(Task.find(secondTask.getId()), secondTask);
     }
 
+    //update data
+    @Test
+    public void update_updatesTaskDescription_true() {
+        Task myTask = new Task("Mow the lawn", 1);
+        myTask.save();
+        myTask.update("Take a nap");
+        assertEquals("Take a nap", Task.find(myTask.getId()).getDescription());
+    }
+
+    //delete task
+    @Test
+    public void delete_deletesTask_true() {
+        Task myTask = new Task("Mow the lawn", 1);
+        myTask.save();
+        int myTaskId = myTask.getId();
+        myTask.delete();
+        assertEquals(null, Task.find(myTaskId));
+    }
+
 }

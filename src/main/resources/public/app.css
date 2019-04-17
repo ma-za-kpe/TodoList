@@ -38,3 +38,20 @@ th{
  #todoItem{
  font-size:40px;
  }
+
+.task{
+ font-size:20px;
+  color: #5B1000;
+}
+
+
+.cat{
+ font-size:40px;
+  color: #5B1000;
+}
+
+.delete{
+background-color: #FA0000;
+ font-size:20px;
+
+}

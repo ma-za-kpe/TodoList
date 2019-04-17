@@ -25,7 +25,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th scope="col"><h2 class="header">TodoItem Name</h2></th>
+            <th scope="col"><h2 class="header">Category Name</h2></th>
             <th scope="col"><h2 class="header">Update</h2></th>
             <th scope="col"><h2 class="header">Delete</h2></th>
             <th scope="col"><h2 class="header">More...</h2></th>
@@ -35,9 +35,9 @@
           #foreach($category in $categories)
            <tr>
             <td class="header">$category.getName()</td>
-            <td><a href="/add-form"><button type="submit" class="btn add btn-lg "><p class="add-btn">Edit</p></button></a></td>
+            <td><a href="/categories/:category_id/tasks/:id"><button type="submit" class="btn add btn-lg "><p class="add-btn">Edit</p></button></a></td>
             <td><a href="/add-form"><button type="submit" class="btn add btn-lg"><p class="add-btn">Delete</p></button></a></td>
-            <td><a href="/add-form"><button type="submit" class="btn add btn-lg"><p class="add-btn">View Todos</p></button></a></td>
+            <td><a href="/categories/$category.getId()"><button type="submit" class="btn add btn-lg"><p class="add-btn">View Todos</p></button></a></td>
           </tr>
           #end
         </tbody>
