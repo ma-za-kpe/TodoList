@@ -35,9 +35,13 @@
           #foreach($category in $categories)
            <tr>
             <td class="header">$category.getName()</td>
-            <td><a href="/categories/:category_id/tasks/:id"><button type="submit" class="btn add btn-lg "><p class="add-btn">Edit</p></button></a></td>
-            <td><a href="/add-form"><button type="submit" class="btn add btn-lg"><p class="add-btn">Delete</p></button></a></td>
-            <td><a href="/categories/$category.getId()"><button type="submit" class="btn add btn-lg"><p class="add-btn">View Todos</p></button></a></td>
+            <td><a href="/categoriedit/$category.getId()"><button type="submit" class="btn add btn-lg "><p class="add-btn">Edit</p></button></a></td>
+            <td>
+             <form action="/categories/$category.getId()/delete" method="post">
+               <a href="/"><button type="submit" class="btn delete btn-lg">
+                 <p class="add-btn">Delete</p></button>
+               </a>
+             </form>
           </tr>
           #end
         </tbody>

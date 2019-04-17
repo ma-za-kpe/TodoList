@@ -95,7 +95,7 @@ public class App {
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
-        //update category by id
+        //update task by id
         post("/categories/:category_id/tasks/:id", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
             Task task = Task.find(Integer.parseInt(request.params("id")));
@@ -115,6 +115,36 @@ public class App {
             task.delete();
             model.put("category", category);
             model.put("template", "templates/category.vtl");
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        //get the updated category page
+        get("/categoriedit/:category_id", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Category category = Category.find(Integer.parseInt(request.params(":category_id")));
+            model.put("category", category);
+            model.put("template", "templates/categoryEdit.vtl");
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        //update category by id
+        post("/categories/:category_id", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Category category = Category.find(Integer.parseInt(request.params("category_id")));
+            String name = request.queryParams("name");
+            category.update(name);
+            String url = String.format("/categories/%d", category.getId());
+            response.redirect(url);
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        //delete a category
+        post("/categories/:category_id/delete", (request, response) -> {
+            HashMap<String, Object> model = new HashMap<String, Object>();
+            Category category = Category.find(Integer.parseInt(request.params("category_id")));
+            category.delete();
+            model.put("category", category);
+            model.put("template", "templates/index.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
