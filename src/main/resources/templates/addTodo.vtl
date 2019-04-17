@@ -1,7 +1,15 @@
 <!-- Default form login -->
-<form class="text-center border border-light p-5" action="/addform" method="POST">
+<form class="text-center border border-light p-5" action="/addform" method="post">
 
     <p class="h4 mb-4">Todo Details</p>
+
+    <label for="categoryId" class="add-btn">Select a List</label>
+    <select class="browser-default custom-select" id='categoryId' name='categoryId' type='text'>
+      <option selected>Category select menu</option>
+       #foreach($category in $categories)
+              <option value="$category.getId()">$category.getName()</option>
+            #end
+    </select>
 
     <!-- Name -->
     <input type="todoItem" id="todoItem" name="todoItem" id="defaultLoginFormEmail" class="form-control mb-4" >

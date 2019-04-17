@@ -26,33 +26,69 @@ public class App {
             port = 4567;
         }
 
-        setPort(port);
+        port(port);
 
-        get("/", (request, response) -> {
-            Map<String, Object> model = new HashMap<String, Object>();
-            ArrayList<Todo> todos = Todo.getAllTodo();
-            model.put("mytodos", todos);
-            model.put("template", "templates/index.vtl");
-            return new ModelAndView(model, layout);
-        }, new VelocityTemplateEngine());
+//        get("/", (request, response) -> {
+//            Map<String, Object> model = new HashMap<String, Object>();
+////            ArrayList<Task> todos = Task.;
+////            model.put("mytodos", todos);
+//            model.put("template", "templates/index.vtl");
+//            return new ModelAndView(model, layout);
+//        }, new VelocityTemplateEngine());
 
         get("/addTodoForm", (request, response) -> {
             Map<String, Object> model = new HashMap<String, Object>();
+            model.put("categories", Category.all());
             model.put("template", "templates/addTodo.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 
             //post: process new post form
-            post("/addform", (request, response) -> { //URL to make new post on POST route
-            Map<String, Object> model = new HashMap<>();
-            String todoItem = request.queryParams("todoItem").toUpperCase();
-            //session
-            request.session().attribute("todoItem");
-            model.put("todoItem", todoItem);
+        post("/addform", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
 
-            Todo newTodo = new Todo(todoItem);
-            model.put("newTodos", newTodo);
+                Integer i = Integer.parseInt(request.queryParams("categoryId"));
+                Category category = Category.find(i);
+                String description = request.queryParams("todoItem");
+                Task newTask = new Task(description, category.getId());
+                newTask.save();
+                model.put("category", category);
+                model.put("template", "templates/success.vtl");
+
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        //add a new category
+        post("/categories", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            String name = request.queryParams("name");
+            Category newCategory = new Category(name);
+            newCategory.save();
             model.put("template", "templates/success.vtl");
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        //get category form
+        get("/categories/new", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("template", "templates/category-form.vtl");
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        //get all category
+        get("/", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            model.put("categories", Category.all());
+            model.put("template", "templates/index.vtl");
+            return new ModelAndView(model, layout);
+        }, new VelocityTemplateEngine());
+
+        //get category by id
+        get("/categories/:id", (request, response) -> {
+            Map<String, Object> model = new HashMap<String, Object>();
+            Category category = Category.find(Integer.parseInt(request.params(":id")));
+            model.put("category", category);
+            model.put("template", "templates/category.vtl");
             return new ModelAndView(model, layout);
         }, new VelocityTemplateEngine());
 

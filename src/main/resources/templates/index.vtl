@@ -1,8 +1,22 @@
 
 <div class="row">
 <div class="col-sm">
-<h3> ADD A TODO ITEM: <a href="/addTodoForm"><button type="submit" class="btn add btn-lg"> <p class="add-btn">ADD</p> </button></a> </h3>
+<h3><a href="/addTodoForm"><button type="submit" class="btn add btn-lg"> <p class="add-btn">ADD TODO</p> </button></a> </h3>
 </div>
+<div class="col-sm">
+<h3><a href="/categories/new"><button type="submit" class="btn add btn-lg"> <p class="add-btn">ADD CATEGORY</p> </button></a> </h3>
+</div>
+<div class="col-sm">
+<!-- Basic dropdown -->
+<button class="btn btn-lg add dropdown-toggle mr-4" type="button" data-toggle="dropdown"
+  aria-haspopup="true" aria-expanded="false" id='categoryId' name='categoryId' type='text'><p class="add-btn">SHOW CATEGORY</p></button>
+
+<div class="dropdown-menu">
+#foreach($category in $categories)
+    <a class="dropdown-item" href="$category.getId()"><p class="add-btn">$category.getName()-$category.getId()</p></a>
+  #end
+</div>
+<!-- Basic dropdown --></div>
 </div>
 
 
@@ -18,12 +32,12 @@
           </tr>
         </thead>
         <tbody>
-          #foreach($todos in $mytodos)
+          #foreach($category in $categories)
            <tr>
-            <td class="header">$todos.todoItem</td>
+            <td class="header">$category.getName()</td>
             <td><a href="/add-form"><button type="submit" class="btn add btn-lg "><p class="add-btn">Edit</p></button></a></td>
             <td><a href="/add-form"><button type="submit" class="btn add btn-lg"><p class="add-btn">Delete</p></button></a></td>
-            <td><a href="/add-form"><button type="submit" class="btn add btn-lg"><p class="add-btn">More...</p></button></a></td>
+            <td><a href="/add-form"><button type="submit" class="btn add btn-lg"><p class="add-btn">View Todos</p></button></a></td>
           </tr>
           #end
         </tbody>
@@ -31,3 +45,5 @@
       </div>
     </div>
 </div>
+
+

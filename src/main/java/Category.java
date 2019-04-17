@@ -1,0 +1,72 @@
+import org.junit.Test;
+import org.sql2o.Connection;
+
+import java.util.List;
+
+import static junit.framework.TestCase.assertTrue;
+
+public class Category {
+
+    private String name;
+    private int id;
+
+    public Category(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public static List<Category> all() {
+        String sql = "SELECT id, name FROM categories";
+        try(Connection con = DB.sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(Category.class);
+        }
+    }
+    public int getId() {
+        return id;
+    }
+
+    @Override
+    public boolean equals(Object otherCategory) {
+        if (!(otherCategory instanceof Category)) {
+            return false;
+        } else {
+            Category newCategory = (Category) otherCategory;
+            return this.getName().equals(newCategory.getName()) &&
+                    this.getId() == newCategory.getId();
+        }
+    }
+
+    //saving new objects to the db
+    public List<Task> getTasks() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM tasks where categoryId=:id";
+            return con.createQuery(sql)
+                    .addParameter("id", this.id)
+                    .executeAndFetch(Task.class);
+        }
+    }
+
+    //find specific category
+    public static Category find(int id) {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "SELECT * FROM categories where id=:id";
+            Category category = con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetchFirst(Category.class);
+            return category;
+        }
+    }
+    public void save() {
+        try(Connection con = DB.sql2o.open()) {
+            String sql = "INSERT INTO categories(name) VALUES (:name)";
+            this.id = (int) con.createQuery(sql, true)
+                    .addParameter("name", this.name)
+                    .executeUpdate()
+                    .getKey();
+        }
+    }
+
+}
