@@ -1,9 +1,7 @@
-import org.junit.Test;
 import org.sql2o.Connection;
 
 import java.util.List;
 
-import static junit.framework.TestCase.assertTrue;
 
 public class Category {
 
