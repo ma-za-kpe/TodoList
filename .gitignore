@@ -1,3 +1,4 @@
+
 # Compiled source #
 ############
 *.com
@@ -36,9 +37,11 @@ Thumbs.db
 # Java and Gradle #
 ############
 out/
+.gradle/
 
 # IntelliJ #
 ############
 .idea
 .idea/
 !gradle-wrapper.jar
+build/
